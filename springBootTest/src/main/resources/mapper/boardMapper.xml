@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Board">
+
+	<select id="getBoard_List" resultType="com.example.springBootTest.model.BoardDto">
+<!-- 	<select id="getBoard_List" resultType="com.example.springBootTest.model.BoardDto"> -->
+		SELECT
+				idx
+				, board_title
+				, board_writer
+				, board_regdate
+		FROM
+				VUEBOARD
+		ORDER BY
+				IDX
+	</select>
+
+
+</mapper>
