@@ -8,5 +8,5 @@ public interface BoardDao {
 
 	List<BoardDto> getBoardList() throws Exception;
 
-
+	public boolean boardInsert(BoardDto boardDto) throws Exception;
 }

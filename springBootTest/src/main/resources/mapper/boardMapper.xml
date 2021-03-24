@@ -6,17 +6,42 @@
 <mapper namespace="Board">
 
 	<select id="getBoard_List" resultType="com.example.springBootTest.model.BoardDto">
-<!-- 	<select id="getBoard_List" resultType="com.example.springBootTest.model.BoardDto"> -->
+		<!-- <select id="getBoard_List" resultType="com.example.springBootTest.model.BoardDto"> -->
+		<![CDATA[
 		SELECT
-				idx
-				, board_title
-				, board_writer
-				, board_regdate
+			idx
+			, board_title
+			, board_writer
+			, board_regdate
 		FROM
-				VUEBOARD
+			VUEBOARD
 		ORDER BY
-				IDX
+		IDX
+		]]>
 	</select>
 
+	<insert id="Board_Insert" parameterType="com.example.springBootTest.model.BoardDto">
+		<selectKey keyColumn="idx" resultType="int" order="BEFORE">
+			SELECT
+				nvl(MAX(idx),0) + 1
+			FROM
+			VUEBOARD
+		</selectKey>
+		<![CDATA[
+
+		INSERT INTO VUEBOARD(
+			idx
+			, board_title
+			, board_writer
+			, board_regdate
+		)
+		VALUES (
+			#{idx}
+			, #{boardTitle}
+			, #{boardWriter}
+			, now()
+		)
+		]]>
+	</insert>
 
 </mapper>
